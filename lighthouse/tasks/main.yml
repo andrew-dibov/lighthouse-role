@@ -1,0 +1,24 @@
+---
+- name: "Install dependencies"
+  ansible.builtin.dnf:
+    state: present
+    name:
+      - git
+      - nginx
+
+- name: "Clone repository"
+  ansible.builtin.git:
+    repo: "{{ lighthouse_repo }}"
+    dest: "{{ lighthouse_dest }}"
+    update: yes
+
+- name: "Configure nginx"
+  template:
+    src: lighthouse.conf.j2
+    dest: /etc/nginx/conf.d/lighthouse.conf
+
+- name: "Start nginx"
+  ansible.builtin.systemd:
+    name: nginx
+    state: started
+    enabled: yes

@@ -1,0 +1,6 @@
+---
+lighthouse_repo: "https://github.com/VKCOM/lighthouse.git"
+lighthouse_dest: "/opt/lighthouse"
+lighthouse_version: "master"
+nginx_port: 80
+nginx_user: "nginx"
